@@ -6,5 +6,6 @@ other backend work used in this project is hint and cancel buttons
 pls click hint for idea about project and cancel afterwards.....
 
 how to assemble it?
-pls put the above files on desktop . as it contains linking so change in path may hamper the working of project and styling .
+pls put the above files(
+(birthdat contains javascrpt code )on desktop . as it contains linking so change in path may hamper the working of project and styling .
 chrome is the prefered browser...
