@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>physic engine</title>
+    <style> 
+        body {padding: 0; margin: 0; overflow: hidden} 
+        canvas{ border: 1px solid black; }
+      </style>
+  </head>
+    
+    
+    <body><font color="green"><H3>Experiment to show a bodY with high speed BOUNCES  MORE then body with slower speed  of comparable size</H3></font>
+         <BR/>
+        <img id="bulb" src="bulb of.png" height=50 width=50>
+<br/>
+<button onclick="light(1)">HINT</button>
+<button onclick="light(0)">CANCEL</button><br/>
+
+      <canvas id="myCanvas"></canvas>
+      <script>
+        function light(value)
+{
+
+var pic;
+if(value==0)
+{pic="bulb of.png";
+}
+
+if (value==1){ pic="bulb on.png";
+    }if (value==1){ alert("red denotes bounces of red square and other is for blue one");
+    }
+
+document.getElementById('bulb').src=pic;
+
+}   
+          
+    var canvas = document.getElementById('myCanvas');  
+      var c = canvas.getContext('2d')
+  
+      canvas.width =950;    
+      canvas.height =550;
+        
+          var w= canvas.width;
+         var h= canvas.height;
+          
+         var xPos = 0;
+         var yPos = 0;
+          var XPos = 0;
+         var YPos = 0;
+         var xSpeed=6;
+         var ySpeed=6;
+             var XSpeed=3;
+         var YSpeed=3;
+          var Red =0;
+          var Blue=0; 
+           
+          
+          function drawSquare(x, y, side, color)
+        {
+              c.beginPath();
+              c.fillStyle=color;
+              c.fillRect(x, y, side, side);
+              c.closePath();
+            }
+          
+        function drawSquare1(X, Y, side, color)
+        {
+              c.beginPath();
+              c.fillStyle=color;
+              c.fillRect(X, Y, side, side);
+              c.closePath();
+            }
+        function init()
+          {
+            xPos =  w/4;
+            yPos =  h/4;
+               XPos =  3*w/4;
+            YPos =  h/4;
+              draw();
+          }
+        function draw()
+          {
+              c.clearRect(0, 0, w, h);
+             drawSquare(xPos, yPos, 10,"Red");
+             drawSquare1(XPos, YPos, 20,"Blue"); 
+            c.font="24px Arial";
+              c.fillText("Red  :" +Red ,w/4,h/2);
+              c.fillText("Blue :" +Blue,3*w/4,h/2);
+              update() ;
+              requestAnimationFrame(draw);
+              
+          }
+          function update()
+          {
+            xPos= xPos +xSpeed;
+              yPos= yPos +ySpeed;
+              //bounce off bottom
+              
+              if(yPos+ 10 > h)
+                  {
+                      ySpeed=-ySpeed;
+                      Red ++;
+                  }
+              else if(yPos<0)
+                  {
+                      ySpeed=-ySpeed;
+                      Red ++;
+                  }
+              if(xPos +10 > w)
+                  {
+                      xSpeed=-xSpeed;Red ++;
+                  }
+              else if(xPos<0)
+                  {
+                      xSpeed=-xSpeed;Red ++;
+                  }
+              
+               console.log(Red );
+              XPos= XPos +XSpeed;
+              YPos= YPos +YSpeed;
+              //bounce off bottom
+              
+              if(YPos+ 10 > h)
+                  {
+                      YSpeed=-YSpeed;
+                      Blue++;
+                  }
+              else if(YPos<0)
+                  {
+                      YSpeed=-YSpeed;
+                      Blue++;
+                  }
+              if(XPos +10 > w)
+                  {
+                      XSpeed=-XSpeed;Blue++;
+                  }
+              else if(XPos<0)
+                  {
+                      XSpeed=-XSpeed;Blue++;
+                      
+                  }
+                       
+       
+
+             console.log(Blue); 
+          }
+          init();
+      </script>
+  <BR/>    PLS PREFER CHROME FOR SAME VISUAL RESULTS....
+  </body>
+</html>
