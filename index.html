@@ -47,11 +47,11 @@ document.getElementById('bulb').src=pic;
           
          var xPos = 0;
          var yPos = 0;
-          var XPos = 0;
+         var XPos = 0;
          var YPos = 0;
          var xSpeed=6;
          var ySpeed=6;
-             var XSpeed=3;
+         var XSpeed=3;
          var YSpeed=3;
           var Red =0;
           var Blue=0; 
@@ -62,14 +62,6 @@ document.getElementById('bulb').src=pic;
               c.beginPath();
               c.fillStyle=color;
               c.fillRect(x, y, side, side);
-              c.closePath();
-            }
-          
-        function drawSquare1(X, Y, side, color)
-        {
-              c.beginPath();
-              c.fillStyle=color;
-              c.fillRect(X, Y, side, side);
               c.closePath();
             }
         function init()
@@ -84,13 +76,36 @@ document.getElementById('bulb').src=pic;
           {
               c.clearRect(0, 0, w, h);
              drawSquare(xPos, yPos, 10,"Red");
-             drawSquare1(XPos, YPos, 20,"Blue"); 
+             drawSquare(XPos, YPos, 20,"Blue"); 
             c.font="24px Arial";
               c.fillText("Red  :" +Red ,w/4,h/2);
               c.fillText("Blue :" +Blue,3*w/4,h/2);
+              collide();
               update() ;
+            console.log(xPos,yPos,XPos,YPos);
               requestAnimationFrame(draw);
               
+          }
+          function collide(){
+              if(xPos+10>=XPos && xPos<XPos && yPos<=YPos+20 && yPos+10>=YPos){
+                  xSpeed=-xSpeed;
+                  XSpeed=-XSpeed;
+              }
+              else if(XPos+20>=xPos && XPos<xPos && YPos<=yPos+10 && YPos+20>=yPos){
+                  xSpeed=-xSpeed;
+                  XSpeed=-XSpeed;
+              }
+              else if(yPos<YPos+20 && yPos>YPos+10 && XPos<=xPos+10 && XPos+20>=xPos){
+                  ySpeed=-ySpeed;
+                  YSpeed=-YSpeed;
+                  
+              }
+              else if(yPos+10>YPos && yPos<YPos && XPos<=xPos+10 && XPos+20>=xPos){
+                ySpeed=-ySpeed;
+                  YSpeed=-YSpeed;
+                 
+              }
+              else{}
           }
           function update()
           {
@@ -122,7 +137,7 @@ document.getElementById('bulb').src=pic;
               YPos= YPos +YSpeed;
               //bounce off bottom
               
-              if(YPos+ 10 > h)
+              if(YPos+ 20 > h)
                   {
                       YSpeed=-YSpeed;
                       Blue++;
@@ -132,7 +147,7 @@ document.getElementById('bulb').src=pic;
                       YSpeed=-YSpeed;
                       Blue++;
                   }
-              if(XPos +10 > w)
+              if(XPos +20 > w)
                   {
                       XSpeed=-XSpeed;Blue++;
                   }
